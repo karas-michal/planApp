@@ -11,9 +11,9 @@ namespace planApp.Pages.Teachers
 {
     public class CreateModel : PageModel
     {
-        private readonly planApp.Models.TeacherContext _context;
+        private readonly planApp.Models.MainContext _context;
 
-        public CreateModel(planApp.Models.TeacherContext context)
+        public CreateModel(planApp.Models.MainContext context)
         {
             _context = context;
         }

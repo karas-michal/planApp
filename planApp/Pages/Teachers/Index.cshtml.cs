@@ -11,9 +11,9 @@ namespace planApp.Pages.Teachers
 {
     public class IndexModel : PageModel
     {
-        private readonly planApp.Models.TeacherContext _context;
+        private readonly planApp.Models.MainContext _context;
 
-        public IndexModel(planApp.Models.TeacherContext context)
+        public IndexModel(planApp.Models.MainContext context)
         {
             _context = context;
         }

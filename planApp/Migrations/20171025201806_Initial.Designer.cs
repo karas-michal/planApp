@@ -10,7 +10,7 @@ using System;
 
 namespace planApp.Migrations
 {
-    [DbContext(typeof(TeacherContext))]
+    [DbContext(typeof(MainContext))]
     [Migration("20171025201806_Initial")]
     partial class Initial
     {

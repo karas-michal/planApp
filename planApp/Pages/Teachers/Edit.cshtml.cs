@@ -12,9 +12,9 @@ namespace planApp.Pages.Teachers
 {
     public class EditModel : PageModel
     {
-        private readonly planApp.Models.TeacherContext _context;
+        private readonly planApp.Models.MainContext _context;
 
-        public EditModel(planApp.Models.TeacherContext context)
+        public EditModel(planApp.Models.MainContext context)
         {
             _context = context;
         }
@@ -29,7 +29,7 @@ namespace planApp.Pages.Teachers
                 return NotFound();
             }
 
-            Teacher = await _context.Teacher.SingleOrDefaultAsync(m => m.ID == id);
+            Teacher = await _context.Teacher.Include("Availability").Include("Subjects").SingleOrDefaultAsync(m => m.ID == id);
 
             if (Teacher == null)
             {

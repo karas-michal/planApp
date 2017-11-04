@@ -11,9 +11,9 @@ namespace planApp.Pages.Teachers
 {
     public class DeleteModel : PageModel
     {
-        private readonly planApp.Models.TeacherContext _context;
+        private readonly planApp.Models.MainContext _context;
 
-        public DeleteModel(planApp.Models.TeacherContext context)
+        public DeleteModel(planApp.Models.MainContext context)
         {
             _context = context;
         }

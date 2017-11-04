@@ -5,12 +5,17 @@ using System.Threading.Tasks;
 
 namespace planApp.Models
 {
-    public class Teacher
-    {
+	public class Teacher
+	{
+		public Teacher()
+		{
+			Subjects = new List<Subject>();
+			Availability = new List<AvailablePeriod>();
+		}
 		public int ID { get; set; }
-		public string Name { get; set; }
-		public string Forname { get; set; }
-		public int HourAvailID { get; set; }
-
-    }
+		public string FirstName { get; set; }
+		public string LastName { get; set; }
+		public virtual List<Subject> Subjects { get; set; }
+		public virtual List<AvailablePeriod> Availability { get; set; }
+	}
 }
