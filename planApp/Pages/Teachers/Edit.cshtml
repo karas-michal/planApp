@@ -40,7 +40,7 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Teacher.Subjects[0].Name)
+                    @Html.DisplayNameFor(model => model.Teacher.Subjects[0].Subject.Name)
                 </th>
                 <th></th>
             </tr>
@@ -50,10 +50,10 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Name)
+                        @Html.DisplayFor(modelItem => item.Subject.Name)
                     </td>
                     <td>
-                        <a asp-page="./SubjectsRemove" asp-route-id="@item.ID" asp-route-teacherId="@Model.Teacher.ID">Usuń</a>
+                        <a asp-page="./SubjectsRemove" asp-route-id="@item.Subject.ID" asp-route-teacherId="@Model.Teacher.ID">Usuń</a>
                     </td>
                 </tr>
             }

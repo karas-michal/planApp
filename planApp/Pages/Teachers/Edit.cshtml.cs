@@ -29,7 +29,7 @@ namespace planApp.Pages.Teachers
                 return NotFound();
             }
 
-            Teacher = await _context.Teacher.Include("Availability").Include("Subjects").SingleOrDefaultAsync(m => m.ID == id);
+            Teacher = await _context.Teacher.Include("Availability").Include("Subjects").Include("Subjects.Subject").Include("Subjects.Teacher").SingleOrDefaultAsync(m => m.ID == id);
 
             if (Teacher == null)
             {

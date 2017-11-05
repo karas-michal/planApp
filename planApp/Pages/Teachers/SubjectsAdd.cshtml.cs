@@ -44,12 +44,18 @@ namespace planApp.Pages.Teachers
                 return Page();
             }
 
-            Teacher Teacher = await _context.Teacher.Include("Subjects").SingleOrDefaultAsync(m => m.ID == TeacherID);
+            Teacher Teacher = await _context.Teacher.Include("Subjects").Include("Subjects.Subject").Include("Subjects.Teacher").SingleOrDefaultAsync(m => m.ID == TeacherID);
             Subject Subject = await _context.Subject.SingleOrDefaultAsync(m => m.ID == SubjectID);
 
             if (Teacher != null)
             {
-                Teacher.Subjects.Add(Subject);
+                var TeacherSubject = new TeacherSubject
+                {
+                    Subject = Subject,
+                    Teacher = Teacher
+                };
+                _context.TeacherSubject.Add(TeacherSubject);
+                Teacher.Subjects.Add(TeacherSubject);
 
                 await _context.SaveChangesAsync();
             }

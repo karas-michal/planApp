@@ -11,9 +11,10 @@ using System;
 namespace planApp.Migrations
 {
     [DbContext(typeof(MainContext))]
-    partial class TeacherContextModelSnapshot : ModelSnapshot
+    [Migration("20171105211549_Teacher-Subject-Many-To-Many")]
+    partial class TeacherSubjectManyToMany
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

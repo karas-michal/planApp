@@ -10,7 +10,7 @@ namespace planApp.Models
 	{
 		public Teacher()
 		{
-			Subjects = new List<Subject>();
+			Subjects = new List<TeacherSubject>();
 			Availability = new List<AvailablePeriod>();
 		}
 		public int ID { get; set; }
@@ -19,7 +19,7 @@ namespace planApp.Models
 		[Display(Name = "Nazwisko")]
 		public string LastName { get; set; }
 		[Display(Name = "Przedmioty")]
-		public virtual List<Subject> Subjects { get; set; }
+		public virtual List<TeacherSubject> Subjects { get; set; }
 		[Display(Name = "Dostępność")]
 		public virtual List<AvailablePeriod> Availability { get; set; }
 	}

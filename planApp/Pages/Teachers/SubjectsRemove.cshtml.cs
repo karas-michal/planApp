@@ -59,14 +59,21 @@ namespace planApp.Pages.Teachers
                 return NotFound();
             }
 
-            Teacher Teacher = await _context.Teacher.Include("Subjects").SingleOrDefaultAsync(m => m.ID == TeacherID);
+            Teacher Teacher = await _context.Teacher.Include("Subjects").Include("Subjects.Subject").Include("Subjects.Teacher").SingleOrDefaultAsync(m => m.ID == TeacherID);
 
             if (Teacher != null)
             {
-                Teacher.Subjects.RemoveAll(m => m.ID == id);
-
-                await _context.SaveChangesAsync();
+                Teacher.Subjects.RemoveAll(m => m.Subject.ID == id);
             }
+
+            TeacherSubject TeacherSubject = await _context.TeacherSubject.FindAsync(TeacherID, id);
+
+            if(TeacherSubject != null)
+            {
+                _context.TeacherSubject.Remove(TeacherSubject);
+            }
+
+            await _context.SaveChangesAsync();
 
             return RedirectToPage("./Edit", new { id = TeacherID });
         }

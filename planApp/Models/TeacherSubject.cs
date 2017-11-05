@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace planApp.Models
 {
-	public class Subject
+	public class TeacherSubject
 	{
-		public int ID { get; set; }
-		[Display(Name = "Nazwa przedmiotu")]
-		public string Name { get; set; }
+		public int TeacherID { get; set; }
+		public int SubjectID { get; set; }
+		public Teacher Teacher { get; set; }
+		public Subject Subject { get; set; }
 	}
 }

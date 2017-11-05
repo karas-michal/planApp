@@ -32,7 +32,7 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Teacher.Subjects[0].Name)
+                    @Html.DisplayNameFor(model => model.Teacher.Subjects[0].Subject.Name)
                 </th>
                 <th></th>
             </tr>
@@ -42,10 +42,10 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Name)
+                        @Html.DisplayFor(modelItem => item.Subject.Name)
                     </td>
                     <td>
-                        <a asp-page="../Subjects/Details" asp-route-id="@item.ID">Szczegóły</a>
+                        <a asp-page="../Subjects/Details" asp-route-id="@item.Subject.ID">Szczegóły</a>
                     </td>
                 </tr>
             }
