@@ -10,40 +10,36 @@ using planApp.Models;
 
 namespace planApp.Pages.Grades
 {
-    public class EditModel : PageModel
+    public class Create2Model : PageModel
     {
         private readonly planApp.Models.MainContext _context;
-
         [BindProperty]
         public Grade Grade { get; set; }
         [BindProperty]
         public int? StudentID { get; set; }
+        [BindProperty]
+        public int? SubjectID { get; set; }
 
-        public EditModel(planApp.Models.MainContext context)
+        public Create2Model(planApp.Models.MainContext context)
         {
             _context = context;
         }
 
-        public async Task<IActionResult> OnGetAsync(int? id, int? studentId)
+        public IActionResult OnGet(int? id, int? subjectId)
         {
-            if (studentId == null)
-            {
-                return NotFound();
-            }
-
-            StudentID = studentId;
-
             if (id == null)
             {
                 return NotFound();
             }
 
-            Grade = await _context.Grade.Include("Subject").SingleOrDefaultAsync(m => m.ID == id);
+            StudentID = id;
 
-            if (Grade == null)
+            if (subjectId == null)
             {
                 return NotFound();
             }
+            SubjectID = subjectId;
+
             return Page();
         }
 
@@ -54,15 +50,15 @@ namespace planApp.Pages.Grades
                 return Page();
             }
 
-            _context.Attach(Grade).State = EntityState.Modified;
+            Student Student = await _context.Student.SingleOrDefaultAsync(m => m.ID == StudentID);
+            Subject Subject = await _context.Subject.SingleOrDefaultAsync(m => m.ID == SubjectID);
 
-            try
+            if (Subject != null && Student != null)
             {
+                Grade.Subject = Subject;
+                _context.Grade.Add(Grade);
+                Student.Grades.Add(Grade);
                 await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                
             }
 
             return RedirectToPage("./Edit", new { id = StudentID });

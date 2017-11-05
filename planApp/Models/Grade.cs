@@ -12,5 +12,7 @@ namespace planApp.Models
         [Range(1, 6)]
         [Display(Name = "Ocena")]
         public int Value { get; set; }
+        [Display(Name = "Przedmiot")]
+        public Subject Subject { get; set; }
     }
 }

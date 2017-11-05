@@ -12,13 +12,12 @@ namespace planApp.Pages.Students
     public class DetailsModel : PageModel
     {
         private readonly planApp.Models.MainContext _context;
+        public Student Student { get; set; }
 
         public DetailsModel(planApp.Models.MainContext context)
         {
             _context = context;
         }
-
-        public Student Student { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -27,7 +26,7 @@ namespace planApp.Pages.Students
                 return NotFound();
             }
 
-            Student = await _context.Student.Include("Grades").SingleOrDefaultAsync(m => m.ID == id);
+            Student = await _context.Student.Include("Grades").Include("Grades.Subject").SingleOrDefaultAsync(m => m.ID == id);
 
             if (Student == null)
             {

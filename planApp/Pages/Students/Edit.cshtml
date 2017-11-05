@@ -33,7 +33,7 @@
 <hr />
 <h4>@Html.DisplayNameFor(model => model.Student.Grades)</h4>
 <p>
-    <a asp-page="./GradesCreate">Dodaj</a>
+    <a asp-page="./GradesCreate1" asp-route-id="@Model.Student.ID">Dodaj</a>
 </p>
 <div class="row">
     <table class="table">
@@ -41,6 +41,9 @@
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.Student.Grades[0].Value)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Student.Grades[0].Subject.Name)
                 </th>
                 <th></th>
             </tr>
@@ -53,8 +56,11 @@
                         @Html.DisplayFor(modelItem => item.Value)
                     </td>
                     <td>
-                        <a asp-page="./GradesEdit" asp-route-id="@item.ID">Edytuj</a> |
-                        <a asp-page="./GradesDelete" asp-route-id="@item.ID">Usuń</a>
+                        @Html.DisplayFor(modelItem => item.Subject.Name)
+                    </td>
+                    <td>
+                        <a asp-page="./GradesEdit" asp-route-id="@item.ID" asp-route-studentId="@Model.Student.ID">Edytuj</a> |
+                        <a asp-page="./GradesDelete" asp-route-id="@item.ID" asp-route-studentId="@Model.Student.ID">Usuń</a>
                     </td>
                 </tr>
             }

@@ -12,14 +12,13 @@ namespace planApp.Pages.Students
     public class DeleteModel : PageModel
     {
         private readonly planApp.Models.MainContext _context;
+        [BindProperty]
+        public Student Student { get; set; }
 
         public DeleteModel(planApp.Models.MainContext context)
         {
             _context = context;
         }
-
-        [BindProperty]
-        public Student Student { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {

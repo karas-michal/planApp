@@ -13,14 +13,13 @@ namespace planApp.Pages.Students
     public class EditModel : PageModel
     {
         private readonly planApp.Models.MainContext _context;
+        [BindProperty]
+        public Student Student { get; set; }
 
         public EditModel(planApp.Models.MainContext context)
         {
             _context = context;
         }
-
-        [BindProperty]
-        public Student Student { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,7 +28,7 @@ namespace planApp.Pages.Students
                 return NotFound();
             }
 
-            Student = await _context.Student.Include("Grades").SingleOrDefaultAsync(m => m.ID == id);
+            Student = await _context.Student.Include("Grades").Include("Grades.Subject").SingleOrDefaultAsync(m => m.ID == id);
 
             if (Student == null)
             {

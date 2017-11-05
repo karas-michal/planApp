@@ -9,7 +9,7 @@ namespace planApp.Models
 	public class Subject
 	{
 		public int ID { get; set; }
-		[Display(Name = "Nazwa przedmiotu")]
+		[Display(Name = "Przedmiot")]
 		public string Name { get; set; }
 	}
 }
