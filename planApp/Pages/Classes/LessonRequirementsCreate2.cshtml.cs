@@ -10,39 +10,37 @@ using planApp.Models;
 
 namespace planApp.Pages.LessonRequirements
 {
-    public class EditModel : PageModel
+    public class Create2Model : PageModel
     {
         private readonly planApp.Models.MainContext _context;
         [BindProperty]
         public LessonRequirement LessonRequirement { get; set; }
         [BindProperty]
         public int? ClassID { get; set; }
+        [BindProperty]
+        public int? SubjectID { get; set; }
 
-        public EditModel(planApp.Models.MainContext context)
+        public Create2Model(planApp.Models.MainContext context)
         {
             _context = context;
         }
 
-        public async Task<IActionResult> OnGetAsync(int? id, int? classId)
+        public IActionResult OnGet(int? id, int? subjectId)
         {
-            if (classId == null)
-            {
-                return NotFound();
-            }
-
-            ClassID = classId;
-
             if (id == null)
             {
                 return NotFound();
             }
 
-            LessonRequirement = await _context.LessonRequirement.SingleOrDefaultAsync(m => m.ID == id);
+            ClassID = id;
 
-            if (LessonRequirement == null)
+            if (subjectId == null)
             {
                 return NotFound();
             }
+
+            SubjectID = subjectId;
+
             return Page();
         }
 
@@ -53,15 +51,15 @@ namespace planApp.Pages.LessonRequirements
                 return Page();
             }
 
-            _context.Attach(LessonRequirement).State = EntityState.Modified;
+            Class Class = await _context.Class.SingleOrDefaultAsync(m => m.ID == ClassID);
+            Subject Subject = await _context.Subject.SingleOrDefaultAsync(m => m.ID == SubjectID);
 
-            try
+            if (Class != null && Subject != null)
             {
+                LessonRequirement.Subject = Subject;
+                _context.LessonRequirement.Add(LessonRequirement);
+                Class.Requirements.Add(LessonRequirement);
                 await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                
             }
 
             return RedirectToPage("./Edit", new { id = ClassID });

@@ -20,6 +20,6 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.LessonRequirement.ID">Edytuj</a> |
-    <a asp-page="./Index">Wróć</a>
+    <a asp-page="./Edit" asp-route-id="@Model.LessonRequirement.ID" asp-route-classId="@Model.ClassID">Edytuj</a> |
+    <a asp-page="./Details" asp-route-id="Model.ClassID">Wróć</a>
 </div>

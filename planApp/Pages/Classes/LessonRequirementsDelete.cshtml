@@ -22,7 +22,8 @@
     
     <form method="post">
         <input type="hidden" asp-for="LessonRequirement.ID" />
+        <input type="hidden" asp-for="ClassID" />
         <input type="submit" value="Usuń" class="btn btn-default" /> |
-        <a asp-page="./Index">Wróć</a>
+        <a asp-page="./Edit" asp-route-id="@Model.ClassID">Wróć</a>
     </form>
 </div>

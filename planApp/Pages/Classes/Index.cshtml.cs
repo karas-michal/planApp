@@ -12,13 +12,12 @@ namespace planApp.Pages.Classes
     public class IndexModel : PageModel
     {
         private readonly planApp.Models.MainContext _context;
+        public IList<Class> Class { get; set; }
 
         public IndexModel(planApp.Models.MainContext context)
         {
             _context = context;
         }
-
-        public IList<Class> Class { get;set; }
 
         public async Task OnGetAsync()
         {

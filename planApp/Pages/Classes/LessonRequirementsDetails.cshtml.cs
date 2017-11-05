@@ -12,16 +12,24 @@ namespace planApp.Pages.LessonRequirements
     public class DetailsModel : PageModel
     {
         private readonly planApp.Models.MainContext _context;
+        public LessonRequirement LessonRequirement { get; set; }
+        [BindProperty]
+        public int? ClassID { get; set; }
 
         public DetailsModel(planApp.Models.MainContext context)
         {
             _context = context;
         }
 
-        public LessonRequirement LessonRequirement { get; set; }
-
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id, int? classId)
         {
+            if (classId == null)
+            {
+                return NotFound();
+            }
+
+            ClassID = classId;
+
             if (id == null)
             {
                 return NotFound();

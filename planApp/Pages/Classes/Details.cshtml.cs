@@ -12,13 +12,12 @@ namespace planApp.Pages.Classes
     public class DetailsModel : PageModel
     {
         private readonly planApp.Models.MainContext _context;
+        public Class Class { get; set; }
 
         public DetailsModel(planApp.Models.MainContext context)
         {
             _context = context;
         }
-
-        public Class Class { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {

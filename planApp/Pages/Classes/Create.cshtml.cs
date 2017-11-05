@@ -12,6 +12,8 @@ namespace planApp.Pages.Classes
     public class CreateModel : PageModel
     {
         private readonly planApp.Models.MainContext _context;
+        [BindProperty]
+        public Class Class { get; set; }
 
         public CreateModel(planApp.Models.MainContext context)
         {
@@ -22,9 +24,6 @@ namespace planApp.Pages.Classes
         {
             return Page();
         }
-
-        [BindProperty]
-        public Class Class { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {

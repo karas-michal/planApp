@@ -51,7 +51,7 @@
                         @Html.DisplayFor(modelItem => item.LastName)
                     </td>
                     <td>
-                        <a asp-page="../Students/Details" asp-route-id="@item.ID">Szczegóły</a>
+                        <a asp-page="../Students/Details" asp-route-id="@item.ID" asp-route-classId="@Model.Class.ID">Szczegóły</a>
                     </td>
                 </tr>
             }

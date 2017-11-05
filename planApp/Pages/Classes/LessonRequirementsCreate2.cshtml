@@ -1,5 +1,5 @@
 ﻿@page
-@model planApp.Pages.LessonRequirements.CreateModel
+@model planApp.Pages.LessonRequirements.Create2Model
 
 @{
     ViewData["Title"] = "Dodaj";
@@ -13,6 +13,8 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ClassID" />
+            <input type="hidden" asp-for="SubjectID" />
             <div class="form-group">
                 <label asp-for="LessonRequirement.Hours" class="control-label"></label>
                 <input asp-for="LessonRequirement.Hours" class="form-control" />
@@ -26,7 +28,7 @@
 </div>
 
 <div>
-    <a asp-page="Index">Wróć</a>
+    <a asp-page="./Edit" asp-route-id="@Model.ClassID">Wróć</a>
 </div>
 
 @section Scripts {

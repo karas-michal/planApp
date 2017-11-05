@@ -7,41 +7,43 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using planApp.Models;
 
-namespace planApp.Pages.LessonRequirements
+namespace planApp.Pages.Teachers
 {
-    public class DeleteModel : PageModel
+    public class StudentsRemoveModel : PageModel
     {
         private readonly planApp.Models.MainContext _context;
-        [BindProperty]
-        public LessonRequirement LessonRequirement { get; set; }
+        
         [BindProperty]
         public int? ClassID { get; set; }
+        [BindProperty]
+        public Student Student { get; set; }
 
-        public DeleteModel(planApp.Models.MainContext context)
+        public StudentsRemoveModel(planApp.Models.MainContext context)
         {
             _context = context;
         }
 
         public async Task<IActionResult> OnGetAsync(int? id, int? classId)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
             if (classId == null)
+            {
+                return NotFound();
+            }
+
+            Student = await _context.Student.SingleOrDefaultAsync(m => m.ID == id);
+
+            if (Student == null)
             {
                 return NotFound();
             }
 
             ClassID = classId;
 
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            LessonRequirement = await _context.LessonRequirement.SingleOrDefaultAsync(m => m.ID == id);
-
-            if (LessonRequirement == null)
-            {
-                return NotFound();
-            }
             return Page();
         }
 
@@ -52,20 +54,26 @@ namespace planApp.Pages.LessonRequirements
                 return NotFound();
             }
 
-            Class Class = await _context.Class.SingleOrDefaultAsync(m => m.ID == ClassID);
+            if (ClassID == null)
+            {
+                return NotFound();
+            }
+
+            Class Class = await _context.Class.Include("Students").SingleOrDefaultAsync(m => m.ID == ClassID);
 
             if (Class != null)
             {
-                Class.Requirements.RemoveAll(m => m.ID == id);
+                Class.Students.RemoveAll(m => m.ID == id);
             }
 
-            LessonRequirement = await _context.LessonRequirement.FindAsync(id);
+            TeacherSubject TeacherSubject = await _context.TeacherSubject.FindAsync(ClassID, id);
 
-            if (LessonRequirement != null)
+            if(TeacherSubject != null)
             {
-                _context.LessonRequirement.Remove(LessonRequirement);
-                await _context.SaveChangesAsync();
+                _context.TeacherSubject.Remove(TeacherSubject);
             }
+
+            await _context.SaveChangesAsync();
 
             return RedirectToPage("./Edit", new { id = ClassID });
         }

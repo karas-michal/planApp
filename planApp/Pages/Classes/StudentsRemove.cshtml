@@ -1,0 +1,35 @@
+﻿@page
+@model planApp.Pages.Teachers.StudentsRemoveModel
+
+@{
+    ViewData["Title"] = "Usuń ucznia";
+}
+
+<h2>Usuń ucznia</h2>
+<h3>Czy na pewno chcesz usunąć tego ucznia?</h3>
+<div>
+    <hr />
+    <h4>Uczeń</h4>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Student.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Student.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Student.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Student.LastName)
+        </dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Student.ID" />
+        <input type="hidden" asp-for="ClassID" />
+        <input type="submit" value="Usuń" class="btn btn-default" /> |
+        <a asp-page="./Edit" asp-route-id="@Model.ClassID">Wróć</a>
+    </form>
+</div>
+

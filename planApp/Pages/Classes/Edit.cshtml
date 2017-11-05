@@ -35,6 +35,9 @@
 </div>
 <hr />
 <h4>@Html.DisplayNameFor(model => model.Class.Students)</h4>
+<p>
+    <a asp-page="StudentsAdd" asp-route-classId="@Model.Class.ID">Dodaj</a>
+</p>
 <div class="row">
     <table class="table">
         <thead>
@@ -59,7 +62,7 @@
                         @Html.DisplayFor(modelItem => item.LastName)
                     </td>
                     <td>
-                        <a asp-page="./StudentsRemove" asp-route-id="@item.ID">Usuń</a>
+                        <a asp-page="./StudentsRemove" asp-route-id="@item.ID" asp-route-classId="@Model.Class.ID">Usuń</a>
                     </td>
                 </tr>
             }
@@ -69,7 +72,7 @@
 <hr />
 <h4>@Html.DisplayNameFor(model => model.Class.Requirements)</h4>
 <p>
-    <a asp-page="LessonRequirementsCreate">Dodaj</a>
+    <a asp-page="LessonRequirementsCreate1" asp-route-id="@Model.Class.ID">Dodaj</a>
 </p>
 <div class="row">
     <table class="table">
@@ -89,8 +92,8 @@
                         @Html.DisplayFor(modelItem => item.Hours)
                     </td>
                     <td>
-                        <a asp-page="./LessonRequirementsEdit" asp-route-id="@item.ID">Edytuj</a> |
-                        <a asp-page="./LessonRequirementsDelete" asp-route-id="@item.ID">Usuń</a>
+                        <a asp-page="./LessonRequirementsEdit" asp-route-id="@item.ID" asp-route-classId="@Model.Class.ID">Edytuj</a> |
+                        <a asp-page="./LessonRequirementsDelete" asp-route-id="@item.ID" asp-route-classId="@Model.Class.ID">Usuń</a>
                     </td>
                 </tr>
             }
