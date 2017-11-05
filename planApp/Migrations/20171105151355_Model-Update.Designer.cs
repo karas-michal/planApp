@@ -11,9 +11,10 @@ using System;
 namespace planApp.Migrations
 {
     [DbContext(typeof(MainContext))]
-    partial class TeacherContextModelSnapshot : ModelSnapshot
+    [Migration("20171105151355_Model-Update")]
+    partial class ModelUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,7 +61,7 @@ namespace planApp.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("Number");
+                    b.Property<string>("Name");
 
                     b.HasKey("ID");
 
