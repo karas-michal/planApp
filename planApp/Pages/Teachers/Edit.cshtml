@@ -1,14 +1,14 @@
-@page
+﻿@page
 @model planApp.Pages.Teachers.EditModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edytuj";
 }
 
-<h2>Edit</h2>
+<h2>Edytuj</h2>
 
-<h4>Teacher</h4>
 <hr />
+<h4>Nauczyciel</h4>
 <div class="row">
     <div class="col-md-4">
         <form method="post">
@@ -30,10 +30,12 @@
         </form>
     </div>
 </div>
+<hr />
+<h4>@Html.DisplayNameFor(model => model.Teacher.Subjects)</h4>
+<p>
+    <a asp-page="SubjectsAdd" asp-route-teacherId="@Model.Teacher.ID">Dodaj</a>
+</p>
 <div class="row">
-    <p>
-        <a asp-page="SubjectsAdd">Add</a>
-    </p>
     <table class="table">
         <thead>
             <tr>
@@ -51,17 +53,19 @@
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
-                        <a asp-page="./SubjectsRemove" asp-route-id="@item.ID">Remove</a>
+                        <a asp-page="./SubjectsRemove" asp-route-id="@item.ID" asp-route-teacherId="@Model.Teacher.ID">Usuń</a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+<hr />
+<h4>@Html.DisplayNameFor(model => model.Teacher.Availability)</h4>
+<p>
+    <a asp-page="AvailablePeriodsCreate" asp-route-teacherId="@Model.Teacher.ID">Dodaj</a>
+</p>
 <div class="row">
-    <p>
-        <a asp-page="AvailablePeriodsCreate" asp-route-teacherId="@Model.Teacher.ID">Create New</a>
-    </p>
     <table class="table">
         <thead>
             <tr>
@@ -69,7 +73,10 @@
                     @Html.DisplayNameFor(model => model.Teacher.Availability[0].Day)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Teacher.Availability[0].Period)
+                    @Html.DisplayNameFor(model => model.Teacher.Availability[0].Start)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Teacher.Availability[0].End)
                 </th>
                 <th></th>
             </tr>
@@ -82,11 +89,14 @@
                         @Html.DisplayFor(modelItem => item.Day)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Period)
+                        @Html.DisplayFor(modelItem => item.Start)
                     </td>
                     <td>
-                        <a asp-page="./AvailablePeriodsEdit" asp-route-id="@item.ID">Edit</a> |
-                        <a asp-page="./AvailablePeriodsDelete" asp-route-id="@item.ID">Delete</a>
+                        @Html.DisplayFor(modelItem => item.End)
+                    </td>
+                    <td>
+                        <a asp-page="./AvailablePeriodsEdit" asp-route-id="@item.ID" asp-route-teacherId="@Model.Teacher.ID">Edytuj</a> |
+                        <a asp-page="./AvailablePeriodsDelete" asp-route-id="@item.ID" asp-route-teacherId="@Model.Teacher.ID">Usuń</a>
                     </td>
                 </tr>
             }
@@ -97,7 +107,7 @@
 
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Index">Wróć</a>
 </div>
 
 @section Scripts {

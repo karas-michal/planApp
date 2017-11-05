@@ -1,0 +1,38 @@
+﻿@page
+@model planApp.Pages.Teachers.SubjectsAddModel
+
+@{
+    ViewData["Title"] = "Dodaj przedmiot";
+}
+
+<h2>Dodaj przedmiot</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject[0].Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Subject)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" asp-for="SubjectID" value="@item.ID" />
+                        <input type="hidden" asp-for="TeacherID" />
+                        <input type="submit" value="Dodaj" class="btn btn-default" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.TeacherID">Wróć</a>
+</div>

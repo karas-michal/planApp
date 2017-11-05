@@ -10,21 +10,21 @@ using planApp.Models;
 
 namespace planApp.Pages.Teachers
 {
-    public class AvailablePeriodsCreateModel : PageModel
+    public class SubjectsAddModel : PageModel
     {
         private readonly planApp.Models.MainContext _context;
-
         [BindProperty]
-        public AvailablePeriod AvailablePeriod { get; set; }
+        public int? SubjectID { get; set; }
         [BindProperty]
         public int? TeacherID { get; set; }
+        public IList<Subject> Subject { get; set; }
 
-        public AvailablePeriodsCreateModel(planApp.Models.MainContext context)
+        public SubjectsAddModel(planApp.Models.MainContext context)
         {
             _context = context;
         }
 
-        public IActionResult OnGet(int? teacherId)
+        public async Task<IActionResult> OnGetAsync(int? teacherId)
         {
             if (teacherId == null)
             {
@@ -32,7 +32,8 @@ namespace planApp.Pages.Teachers
             }
 
             TeacherID = teacherId;
-            
+            Subject = await _context.Subject.ToListAsync();
+
             return Page();
         }
 
@@ -43,12 +44,12 @@ namespace planApp.Pages.Teachers
                 return Page();
             }
 
-            Teacher Teacher = await _context.Teacher.Include("Availability").SingleOrDefaultAsync(m => m.ID == TeacherID);
+            Teacher Teacher = await _context.Teacher.Include("Subjects").SingleOrDefaultAsync(m => m.ID == TeacherID);
+            Subject Subject = await _context.Subject.SingleOrDefaultAsync(m => m.ID == SubjectID);
 
             if (Teacher != null)
             {
-                _context.AvailablePeriod.Add(AvailablePeriod);
-                Teacher.Availability.Add(AvailablePeriod);
+                Teacher.Subjects.Add(Subject);
 
                 await _context.SaveChangesAsync();
             }

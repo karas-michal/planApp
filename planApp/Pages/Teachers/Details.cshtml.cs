@@ -13,12 +13,12 @@ namespace planApp.Pages.Teachers
     {
         private readonly planApp.Models.MainContext _context;
 
+        public Teacher Teacher { get; set; }
+
         public DetailsModel(planApp.Models.MainContext context)
         {
             _context = context;
         }
-
-        public Teacher Teacher { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,7 +28,6 @@ namespace planApp.Pages.Teachers
             }
 
             Teacher = await _context.Teacher.Include("Availability").Include("Subjects").SingleOrDefaultAsync(m => m.ID == id);
-
 
             if (Teacher == null)
             {

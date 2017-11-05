@@ -13,13 +13,13 @@ namespace planApp.Pages.Teachers
     {
         private readonly planApp.Models.MainContext _context;
 
+        [BindProperty]
+        public Teacher Teacher { get; set; }
+
         public DeleteModel(planApp.Models.MainContext context)
         {
             _context = context;
         }
-
-        [BindProperty]
-        public Teacher Teacher { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {

@@ -9,16 +9,16 @@ using planApp.Models;
 
 namespace planApp.Pages.Teachers
 {
-    public class AvailablePeriodsDeleteModel : PageModel
+    public class SubjectsRemoveModel : PageModel
     {
         private readonly planApp.Models.MainContext _context;
-
-        [BindProperty]
-        public AvailablePeriod AvailablePeriod { get; set; }
+        
         [BindProperty]
         public int? TeacherID { get; set; }
+        [BindProperty]
+        public Subject Subject { get; set; }
 
-        public AvailablePeriodsDeleteModel(planApp.Models.MainContext context)
+        public SubjectsRemoveModel(planApp.Models.MainContext context)
         {
             _context = context;
         }
@@ -30,19 +30,20 @@ namespace planApp.Pages.Teachers
                 return NotFound();
             }
 
-            AvailablePeriod = await _context.AvailablePeriod.SingleOrDefaultAsync(m => m.ID == id);
-
-            if (AvailablePeriod == null)
-            {
-                return NotFound();
-            }
-
             if (teacherId == null)
             {
                 return NotFound();
             }
 
+            Subject = await _context.Subject.SingleOrDefaultAsync(m => m.ID == id);
+
+            if (Subject == null)
+            {
+                return NotFound();
+            }
+
             TeacherID = teacherId;
+
             return Page();
         }
 
@@ -53,11 +54,17 @@ namespace planApp.Pages.Teachers
                 return NotFound();
             }
 
-            AvailablePeriod = await _context.AvailablePeriod.FindAsync(id);
-
-            if (AvailablePeriod != null)
+            if (TeacherID == null)
             {
-                _context.AvailablePeriod.Remove(AvailablePeriod);
+                return NotFound();
+            }
+
+            Teacher Teacher = await _context.Teacher.Include("Subjects").SingleOrDefaultAsync(m => m.ID == TeacherID);
+
+            if (Teacher != null)
+            {
+                Teacher.Subjects.RemoveAll(m => m.ID == id);
+
                 await _context.SaveChangesAsync();
             }
 

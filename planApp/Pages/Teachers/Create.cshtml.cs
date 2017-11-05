@@ -13,6 +13,9 @@ namespace planApp.Pages.Teachers
     {
         private readonly planApp.Models.MainContext _context;
 
+        [BindProperty]
+        public Teacher Teacher { get; set; }
+
         public CreateModel(planApp.Models.MainContext context)
         {
             _context = context;
@@ -22,9 +25,6 @@ namespace planApp.Pages.Teachers
         {
             return Page();
         }
-
-        [BindProperty]
-        public Teacher Teacher { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {

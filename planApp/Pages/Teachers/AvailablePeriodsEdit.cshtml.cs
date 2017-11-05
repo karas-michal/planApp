@@ -8,21 +8,23 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using planApp.Models;
 
-namespace planApp.Pages.AvailablePeriods
+namespace planApp.Pages.Teachers
 {
-    public class EditModel : PageModel
+    public class AvailablePeriodsEditModel : PageModel
     {
         private readonly planApp.Models.MainContext _context;
 
-        public EditModel(planApp.Models.MainContext context)
+        [BindProperty]
+        public AvailablePeriod AvailablePeriod { get; set; }
+        [BindProperty]
+        public int? TeacherID { get; set; }
+
+        public AvailablePeriodsEditModel(planApp.Models.MainContext context)
         {
             _context = context;
         }
 
-        [BindProperty]
-        public AvailablePeriod AvailablePeriod { get; set; }
-
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id, int? teacherId)
         {
             if (id == null)
             {
@@ -35,6 +37,13 @@ namespace planApp.Pages.AvailablePeriods
             {
                 return NotFound();
             }
+
+            if (teacherId == null)
+            {
+                return NotFound();
+            }
+
+            TeacherID = teacherId;
             return Page();
         }
 
@@ -56,7 +65,7 @@ namespace planApp.Pages.AvailablePeriods
 
             }
 
-            return RedirectToPage("./Edit");
+            return RedirectToPage("./Edit", new { id = TeacherID });
         }
     }
 }

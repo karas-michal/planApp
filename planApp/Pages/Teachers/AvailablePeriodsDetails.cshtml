@@ -1,14 +1,14 @@
-@page
+﻿@page
 @model planApp.Pages.Teachers.AvailablePeriodsDetailsModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Szczegóły";
 }
 
-<h2>Details</h2>
+<h2>Szczegóły</h2>
 
 <div>
-    <h4>AvailablePeriod</h4>
+    <h4>Dostępność</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -18,14 +18,19 @@
             @Html.DisplayFor(model => model.AvailablePeriod.Day)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.AvailablePeriod.Period)
+            @Html.DisplayNameFor(model => model.AvailablePeriod.Start)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.AvailablePeriod.Period)
+            @Html.DisplayFor(model => model.AvailablePeriod.Start)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AvailablePeriod.End)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AvailablePeriod.End)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.AvailablePeriod.ID">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Details" asp-route-id="@Model.TeacherID">Wróć</a>
 </div>

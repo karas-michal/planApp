@@ -13,14 +13,15 @@ namespace planApp.Pages.Teachers
     {
         private readonly planApp.Models.MainContext _context;
 
+        public AvailablePeriod AvailablePeriod { get; set; }
+        public int? TeacherID { get; set; }
+
         public AvailablePeriodsDetailsModel(planApp.Models.MainContext context)
         {
             _context = context;
         }
 
-        public AvailablePeriod AvailablePeriod { get; set; }
-
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id, int? teacherId)
         {
             if (id == null)
             {
@@ -33,6 +34,13 @@ namespace planApp.Pages.Teachers
             {
                 return NotFound();
             }
+
+            if (teacherId == null)
+            {
+                return NotFound();
+            }
+
+            TeacherID = teacherId;
             return Page();
         }
     }

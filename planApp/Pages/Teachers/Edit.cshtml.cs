@@ -14,13 +14,13 @@ namespace planApp.Pages.Teachers
     {
         private readonly planApp.Models.MainContext _context;
 
+        [BindProperty]
+        public Teacher Teacher { get; set; }
+
         public EditModel(planApp.Models.MainContext context)
         {
             _context = context;
         }
-
-        [BindProperty]
-        public Teacher Teacher { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -56,7 +56,7 @@ namespace planApp.Pages.Teachers
                 
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Details", new { id = Teacher.ID });
         }
     }
 }
