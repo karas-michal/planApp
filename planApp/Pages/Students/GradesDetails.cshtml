@@ -1,15 +1,15 @@
-@page
+﻿@page
 @model planApp.Pages.Grades.DetailsModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Szczegóły";
 }
 
-<h2>Details</h2>
+<h2>Szczegóły</h2>
 
 <div>
-    <h4>Grade</h4>
     <hr />
+    <h4>Ocena</h4>
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Grade.Value)
@@ -20,6 +20,6 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Grade.ID">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Edit" asp-route-id="@Model.Grade.ID">Edytuj</a> |
+    <a asp-page="./Index">Wróć</a>
 </div>
