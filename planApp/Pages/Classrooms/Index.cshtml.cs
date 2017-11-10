@@ -11,9 +11,9 @@ namespace planApp.Pages.Classrooms
 {
     public class IndexModel : PageModel
     {
-        private readonly planApp.Models.MainContext _context;
+        private readonly planApp.Data.ApplicationDbContext _context;
 
-        public IndexModel(planApp.Models.MainContext context)
+        public IndexModel(planApp.Data.ApplicationDbContext context)
         {
             _context = context;
         }

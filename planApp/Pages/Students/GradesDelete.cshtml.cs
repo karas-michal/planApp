@@ -11,13 +11,13 @@ namespace planApp.Pages.Grades
 {
     public class DeleteModel : PageModel
     {
-        private readonly planApp.Models.MainContext _context;
+        private readonly planApp.Data.ApplicationDbContext _context;
         [BindProperty]
         public Grade Grade { get; set; }
         [BindProperty]
         public int? StudentID { get; set; }
 
-        public DeleteModel(planApp.Models.MainContext context)
+        public DeleteModel(planApp.Data.ApplicationDbContext context)
         {
             _context = context;
         }

@@ -5,12 +5,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
+using planApp.Data;
 using planApp.Models;
 using System;
 
 namespace planApp.Migrations
 {
-    [DbContext(typeof(MainContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20171103205401_Full-Model")]
     partial class FullModel
     {

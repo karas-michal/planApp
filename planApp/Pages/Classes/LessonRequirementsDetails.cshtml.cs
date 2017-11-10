@@ -5,18 +5,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using planApp.Models;
+using planApp.Models; using planApp.Data;
 
 namespace planApp.Pages.LessonRequirements
 {
     public class DetailsModel : PageModel
     {
-        private readonly planApp.Models.MainContext _context;
+        private readonly planApp.Data.ApplicationDbContext _context;
         public LessonRequirement LessonRequirement { get; set; }
         [BindProperty]
         public int? ClassID { get; set; }
 
-        public DetailsModel(planApp.Models.MainContext context)
+        public DetailsModel(planApp.Data.ApplicationDbContext context)
         {
             _context = context;
         }

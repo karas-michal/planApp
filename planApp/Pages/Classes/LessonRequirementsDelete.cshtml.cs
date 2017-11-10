@@ -11,13 +11,13 @@ namespace planApp.Pages.LessonRequirements
 {
     public class DeleteModel : PageModel
     {
-        private readonly planApp.Models.MainContext _context;
+        private readonly planApp.Data.ApplicationDbContext _context;
         [BindProperty]
         public LessonRequirement LessonRequirement { get; set; }
         [BindProperty]
         public int? ClassID { get; set; }
 
-        public DeleteModel(planApp.Models.MainContext context)
+        public DeleteModel(planApp.Data.ApplicationDbContext context)
         {
             _context = context;
         }

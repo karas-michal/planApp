@@ -12,14 +12,14 @@ namespace planApp.Pages.Grades
 {
     public class Create1Model : PageModel
     {
-        private readonly planApp.Models.MainContext _context;
+        private readonly planApp.Data.ApplicationDbContext _context;
         [BindProperty]
         public int? StudentID { get; set; }
         [BindProperty]
         public int? SubjectID { get; set; }
         public IList<Subject> Subject { get; set; }
 
-        public Create1Model(planApp.Models.MainContext context)
+        public Create1Model(planApp.Data.ApplicationDbContext context)
         {
             _context = context;
         }

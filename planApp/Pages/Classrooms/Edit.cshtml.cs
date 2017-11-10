@@ -12,9 +12,9 @@ namespace planApp.Pages.Classrooms
 {
     public class EditModel : PageModel
     {
-        private readonly planApp.Models.MainContext _context;
+        private readonly planApp.Data.ApplicationDbContext _context;
 
-        public EditModel(planApp.Models.MainContext context)
+        public EditModel(planApp.Data.ApplicationDbContext context)
         {
             _context = context;
         }

@@ -12,14 +12,14 @@ namespace planApp.Pages.Grades
 {
     public class EditModel : PageModel
     {
-        private readonly planApp.Models.MainContext _context;
+        private readonly planApp.Data.ApplicationDbContext _context;
 
         [BindProperty]
         public Grade Grade { get; set; }
         [BindProperty]
         public int? StudentID { get; set; }
 
-        public EditModel(planApp.Models.MainContext context)
+        public EditModel(planApp.Data.ApplicationDbContext context)
         {
             _context = context;
         }

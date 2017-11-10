@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
-using planApp.Models;
+using planApp.Data;
 using System;
 
 namespace planApp.Migrations
 {
-    [DbContext(typeof(MainContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     partial class TeacherContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -261,6 +261,8 @@ namespace planApp.Migrations
                         .HasForeignKey("TeacherID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
+
+
 #pragma warning restore 612, 618
         }
     }

@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
-using planApp.Models;
+using planApp.Models; using planApp.Data;
 using System;
 
 namespace planApp.Migrations
 {
-    [DbContext(typeof(MainContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20171105144909_Day-Enum")]
     partial class DayEnum
     {

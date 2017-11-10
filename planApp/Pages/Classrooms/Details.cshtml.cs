@@ -11,9 +11,9 @@ namespace planApp.Pages.Classrooms
 {
     public class DetailsModel : PageModel
     {
-        private readonly planApp.Models.MainContext _context;
+        private readonly planApp.Data.ApplicationDbContext _context;
 
-        public DetailsModel(planApp.Models.MainContext context)
+        public DetailsModel(planApp.Data.ApplicationDbContext context)
         {
             _context = context;
         }

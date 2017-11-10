@@ -5,20 +5,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using planApp.Models;
+using planApp.Models; using planApp.Data;
 
 namespace planApp.Pages.Teachers
 {
     public class StudentsRemoveModel : PageModel
     {
-        private readonly planApp.Models.MainContext _context;
+        private readonly planApp.Data.ApplicationDbContext _context;
         
         [BindProperty]
         public int? ClassID { get; set; }
         [BindProperty]
         public Student Student { get; set; }
 
-        public StudentsRemoveModel(planApp.Models.MainContext context)
+        public StudentsRemoveModel(planApp.Data.ApplicationDbContext context)
         {
             _context = context;
         }

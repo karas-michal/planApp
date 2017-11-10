@@ -5,17 +5,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using planApp.Models;
+using planApp.Models; using planApp.Data;
 
 namespace planApp.Pages.Classes
 {
     public class CreateModel : PageModel
     {
-        private readonly planApp.Models.MainContext _context;
+        private readonly planApp.Data.ApplicationDbContext _context;
         [BindProperty]
         public Class Class { get; set; }
 
-        public CreateModel(planApp.Models.MainContext context)
+        public CreateModel(planApp.Data.ApplicationDbContext context)
         {
             _context = context;
         }

@@ -12,14 +12,14 @@ namespace planApp.Pages.Teachers
 {
     public class SubjectsAddModel : PageModel
     {
-        private readonly planApp.Models.MainContext _context;
+        private readonly planApp.Data.ApplicationDbContext _context;
         [BindProperty]
         public int? SubjectID { get; set; }
         [BindProperty]
         public int? TeacherID { get; set; }
         public IList<Subject> Subject { get; set; }
 
-        public SubjectsAddModel(planApp.Models.MainContext context)
+        public SubjectsAddModel(planApp.Data.ApplicationDbContext context)
         {
             _context = context;
         }

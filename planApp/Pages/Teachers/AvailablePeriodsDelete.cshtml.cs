@@ -11,14 +11,14 @@ namespace planApp.Pages.Teachers
 {
     public class AvailablePeriodsDeleteModel : PageModel
     {
-        private readonly planApp.Models.MainContext _context;
+        private readonly planApp.Data.ApplicationDbContext _context;
 
         [BindProperty]
         public AvailablePeriod AvailablePeriod { get; set; }
         [BindProperty]
         public int? TeacherID { get; set; }
 
-        public AvailablePeriodsDeleteModel(planApp.Models.MainContext context)
+        public AvailablePeriodsDeleteModel(planApp.Data.ApplicationDbContext context)
         {
             _context = context;
         }

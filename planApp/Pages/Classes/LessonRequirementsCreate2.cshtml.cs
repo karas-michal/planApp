@@ -12,7 +12,7 @@ namespace planApp.Pages.LessonRequirements
 {
     public class Create2Model : PageModel
     {
-        private readonly planApp.Models.MainContext _context;
+        private readonly planApp.Data.ApplicationDbContext _context;
         [BindProperty]
         public LessonRequirement LessonRequirement { get; set; }
         [BindProperty]
@@ -20,7 +20,7 @@ namespace planApp.Pages.LessonRequirements
         [BindProperty]
         public int? SubjectID { get; set; }
 
-        public Create2Model(planApp.Models.MainContext context)
+        public Create2Model(planApp.Data.ApplicationDbContext context)
         {
             _context = context;
         }

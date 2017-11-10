@@ -11,12 +11,12 @@ namespace planApp.Pages.Teachers
 {
     public class AvailablePeriodsDetailsModel : PageModel
     {
-        private readonly planApp.Models.MainContext _context;
+        private readonly planApp.Data.ApplicationDbContext _context;
 
         public AvailablePeriod AvailablePeriod { get; set; }
         public int? TeacherID { get; set; }
 
-        public AvailablePeriodsDetailsModel(planApp.Models.MainContext context)
+        public AvailablePeriodsDetailsModel(planApp.Data.ApplicationDbContext context)
         {
             _context = context;
         }

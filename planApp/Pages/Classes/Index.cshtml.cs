@@ -11,10 +11,10 @@ namespace planApp.Pages.Classes
 {
     public class IndexModel : PageModel
     {
-        private readonly planApp.Models.MainContext _context;
+        private readonly planApp.Data.ApplicationDbContext _context;
         public IList<Class> Class { get; set; }
 
-        public IndexModel(planApp.Models.MainContext context)
+        public IndexModel(planApp.Data.ApplicationDbContext context)
         {
             _context = context;
         }

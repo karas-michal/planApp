@@ -6,13 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using planApp.Models;
+using planApp.Models; using planApp.Data;
 
 namespace planApp.Pages.Grades
 {
     public class Create2Model : PageModel
     {
-        private readonly planApp.Models.MainContext _context;
+        private readonly planApp.Data.ApplicationDbContext _context;
         [BindProperty]
         public Grade Grade { get; set; }
         [BindProperty]
@@ -20,7 +20,7 @@ namespace planApp.Pages.Grades
         [BindProperty]
         public int? SubjectID { get; set; }
 
-        public Create2Model(planApp.Models.MainContext context)
+        public Create2Model(planApp.Data.ApplicationDbContext context)
         {
             _context = context;
         }

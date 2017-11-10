@@ -6,15 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using planApp.Models;
+using planApp.Models; using planApp.Data;
 
 namespace planApp.Pages.Subjects
 {
     public class EditModel : PageModel
     {
-        private readonly planApp.Models.MainContext _context;
+        private readonly planApp.Data.ApplicationDbContext _context;
 
-        public EditModel(planApp.Models.MainContext context)
+        public EditModel(planApp.Data.ApplicationDbContext context)
         {
             _context = context;
         }

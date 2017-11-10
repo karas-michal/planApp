@@ -12,12 +12,12 @@ namespace planApp.Pages.Teachers
 {
     public class EditModel : PageModel
     {
-        private readonly planApp.Models.MainContext _context;
+        private readonly planApp.Data.ApplicationDbContext _context;
 
         [BindProperty]
         public Teacher Teacher { get; set; }
 
-        public EditModel(planApp.Models.MainContext context)
+        public EditModel(planApp.Data.ApplicationDbContext context)
         {
             _context = context;
         }

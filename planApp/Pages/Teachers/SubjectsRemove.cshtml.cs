@@ -11,14 +11,14 @@ namespace planApp.Pages.Teachers
 {
     public class SubjectsRemoveModel : PageModel
     {
-        private readonly planApp.Models.MainContext _context;
+        private readonly planApp.Data.ApplicationDbContext _context;
         
         [BindProperty]
         public int? TeacherID { get; set; }
         [BindProperty]
         public Subject Subject { get; set; }
 
-        public SubjectsRemoveModel(planApp.Models.MainContext context)
+        public SubjectsRemoveModel(planApp.Data.ApplicationDbContext context)
         {
             _context = context;
         }

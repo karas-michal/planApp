@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using planApp.Models;
+using planApp.Models; using planApp.Data;
 
 namespace planApp.Pages.Students
 {
     public class DetailsModel : PageModel
     {
-        private readonly planApp.Models.MainContext _context;
+        private readonly planApp.Data.ApplicationDbContext _context;
         public Student Student { get; set; }
 
-        public DetailsModel(planApp.Models.MainContext context)
+        public DetailsModel(planApp.Data.ApplicationDbContext context)
         {
             _context = context;
         }

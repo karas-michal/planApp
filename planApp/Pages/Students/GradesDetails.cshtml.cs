@@ -5,19 +5,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using planApp.Models;
+using planApp.Models; using planApp.Data;
 
 namespace planApp.Pages.Grades
 {
     public class DetailsModel : PageModel
     {
-        private readonly planApp.Models.MainContext _context;
+        private readonly planApp.Data.ApplicationDbContext _context;
 
         public Grade Grade { get; set; }
         [BindProperty]
         public int? StudentID { get; set; }
 
-        public DetailsModel(planApp.Models.MainContext context)
+        public DetailsModel(planApp.Data.ApplicationDbContext context)
         {
             _context = context;
         }

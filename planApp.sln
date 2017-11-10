@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "planApp", "planApp\planApp.csproj", "{BD129C11-605C-4061-8A5D-E1A2CCE0271B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "planApp", "planApp\planApp.csproj", "{BD129C11-605C-4061-8A5D-E1A2CCE0271B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Login2", "..\repos\Login2\Login2\Login2.csproj", "{460DD3E0-DDC8-4F43-BCE1-C97327DCCDBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,11 +17,15 @@ Global
 		{BD129C11-605C-4061-8A5D-E1A2CCE0271B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD129C11-605C-4061-8A5D-E1A2CCE0271B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD129C11-605C-4061-8A5D-E1A2CCE0271B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{460DD3E0-DDC8-4F43-BCE1-C97327DCCDBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{460DD3E0-DDC8-4F43-BCE1-C97327DCCDBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{460DD3E0-DDC8-4F43-BCE1-C97327DCCDBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{460DD3E0-DDC8-4F43-BCE1-C97327DCCDBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {65A55317-372A-4215-A43D-6EECE33179E1}
+		SolutionGuid = {EF594D06-42C8-4ED7-B09E-A271CCB4FEF9}
 	EndGlobalSection
 EndGlobal
