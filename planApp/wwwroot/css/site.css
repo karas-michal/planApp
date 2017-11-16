@@ -1,6 +1,7 @@
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #d5e1df;
 }
 
 /* Wrapping element */
@@ -8,6 +9,32 @@ body {
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+}
+.navbar-custom {
+    background-color: #86af49;
+    color: white;
+    border-bottom-width: 1px;
+    border-bottom-color: #405d27;
+}
+
+.navbar-custom  li > a{
+    background-color: #86af49;
+    color: white;
+    border-bottom-width: 1px;
+    border-bottom-color: #405d27;
+}
+
+.navbar-custom li > a:hover {
+    color: black;
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: rgba(255,255,255,.8);
+}
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+    color: black;
 }
 
 /* Carousel */

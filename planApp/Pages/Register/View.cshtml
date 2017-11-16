@@ -1,0 +1,55 @@
+﻿@page
+@model planApp.Pages.Register.ViewModel
+@{
+    ViewData["Title"] = "View";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+
+<h2>Dziennik</h2>
+
+<div class="row">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Student[0].FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Student[0].LastName)
+                </th>
+                @foreach (var item in Model.Subject) { 
+                    <th>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </th>}
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Student)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    @foreach (var itemS in Model.Subject)
+                    {
+                        <td>
+                            @foreach (var itemR in Model.Student)
+                            {
+                                @foreach (var itemG in itemR.Grades)
+                                {
+                                    if (itemG.Subject.ID == itemS.ID)
+                                    {
+                                        <a asp-page="/Students/GradesDetails" asp-route-id="@itemG.ID" asp-route-studentId="@itemR.ID">@Html.DisplayFor(modelItem => itemG.Value)</a>
+                                    }
+
+                                }
+                            }
+                        </td>}
+                </tr>}
+        </tbody>
+    </table>
+</div>

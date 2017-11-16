@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using planApp.Models; using planApp.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace planApp.Pages.Classes
 {
-    public class CreateModel : PageModel
+	[Authorize(Roles = "Admin")]
+	public class CreateModel : PageModel
     {
         private readonly planApp.Data.ApplicationDbContext _context;
         [BindProperty]

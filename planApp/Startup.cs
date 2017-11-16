@@ -34,6 +34,11 @@ namespace planApp
 			
 			services.AddMvc().AddRazorPagesOptions(options =>
 			{
+				options.Conventions.AuthorizeFolder("/Teachers");
+				options.Conventions.AuthorizeFolder("/Students");
+				options.Conventions.AuthorizeFolder("/Classrooms");
+				options.Conventions.AuthorizeFolder("/Classes");
+				options.Conventions.AuthorizeFolder("/Subjects");
 				options.Conventions.AuthorizeFolder("/Account/Manage");
 				options.Conventions.AuthorizePage("/Account/Logout");
 			});
