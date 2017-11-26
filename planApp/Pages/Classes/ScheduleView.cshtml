@@ -1,0 +1,84 @@
+﻿@page
+@model planApp.Pages.Classes.ScheduleViewModel
+
+@{
+    ViewData["Title"] = "Rozkład zajęć";
+}
+
+<h2>Rozkład zajęć</h2>
+
+<hr />
+<h4>Klasa</h4>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Class.Year)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Class.Year)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Class.Letter)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Class.Letter)
+        </dd>
+    </dl>
+</div>
+<hr />
+<h4>Rozkład zajęć</h4>
+<div class="row">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Schedule[0].Day)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Schedule[0].Hour)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Schedule[0].Subject)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Schedule[0].Teacher)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Schedule[0].Class)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Schedule[0].Classroom)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Schedule)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Day)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Hour)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Teacher.FirstName) @Html.DisplayFor(modelItem => item.Teacher.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Class.Year)@Html.DisplayFor(modelItem => item.Class.Letter)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Classroom.Number)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<hr />
+<div>
+    <a asp-page="./Details" asp-route-id="@Model.Class.ID">Wróć</a>
+</div>
