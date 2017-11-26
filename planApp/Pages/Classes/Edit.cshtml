@@ -33,6 +33,9 @@
         <a asp-page="StudentsAdd">Zapisz</a>
     </p>
 </div>
+<div>
+    <a asp-page="./ScheduleGenerator" asp-route-id="@Model.Class.ID">Generuj plan</a>
+</div>
 <hr />
 <h4>@Html.DisplayNameFor(model => model.Class.Students)</h4>
 <p>
