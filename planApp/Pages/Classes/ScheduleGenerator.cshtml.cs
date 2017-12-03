@@ -12,14 +12,17 @@ namespace planApp.Pages.Classes
     public class ScheduleGeneratorModel : PageModel
     {
         private readonly planApp.Data.ApplicationDbContext _context;
+        [BindProperty]
         public Class Class { get; set; }
         public IQueryable<Teacher> Teachers;
         public IQueryable<Lesson> Lessons;
-        public List<Lesson> Schedule = new List<Lesson>();
+        [BindProperty]
+        public List<Lesson> Schedule { get; set; }
 
         public ScheduleGeneratorModel(planApp.Data.ApplicationDbContext context)
         {
             _context = context;
+            Schedule = new List<Lesson>();
         }
 
         public async Task<IActionResult> OnGetAsync(int? id)
@@ -69,6 +72,24 @@ namespace planApp.Pages.Classes
                 .ToList();
 
             return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            _context.Lesson.RemoveRange(_context.Lesson.Include("Class").Where(l => l.Class.ID == Class.ID));
+            //for (var i = 0; i < Schedule.Count(); i++)
+            //{
+            //    var lesson = Schedule[i];
+            foreach (var lesson in Schedule)
+            {
+                lesson.Class = _context.Class.Where(c => c.ID == lesson.Class.ID).First();
+                lesson.Classroom = _context.Classroom.Where(c => c.ID == lesson.Classroom.ID).First();
+                lesson.Subject = _context.Subject.Where(c => c.ID == lesson.Subject.ID).First();
+                lesson.Teacher = _context.Teacher.Where(c => c.ID == lesson.Teacher.ID).First();
+            }
+            _context.Lesson.AddRange(Schedule);
+            await _context.SaveChangesAsync();
+            return RedirectToPage("./Edit", new { id = Class.ID });
         }
 
         private void GenerateSchedule()

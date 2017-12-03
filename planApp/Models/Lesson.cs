@@ -22,5 +22,6 @@ namespace planApp.Models
         public Class Class { get; set; }
         [Display(Name = "Sala")]
         public Classroom Classroom { get; set; }
+        public TimeSpan HourAsTimeSpan { get { return new TimeSpan(Hour); } }
     }
 }

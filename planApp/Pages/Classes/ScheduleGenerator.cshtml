@@ -77,6 +77,23 @@
             }
         </tbody>
     </table>
+
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Class.ID" />
+        @for (var i = 0; i < Model.Schedule.Count(); i++)
+        {
+            <input type="hidden" asp-for="Schedule[i].Class.ID" />
+            <input type="hidden" asp-for="Schedule[i].Classroom.ID" />
+            <input type="hidden" asp-for="Schedule[i].Day" />
+            <input type="hidden" asp-for="Schedule[i].Hour" />
+            <input type="hidden" asp-for="Schedule[i].Subject.ID" />
+            <input type="hidden" asp-for="Schedule[i].Teacher.ID" />
+        }
+        <div class="form-group">
+            <input type="submit" value="Akceptuj" class="btn btn-default" />
+        </div>
+    </form>
 </div>
 <hr />
 <div>
