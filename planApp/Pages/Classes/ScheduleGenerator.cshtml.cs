@@ -43,22 +43,22 @@ namespace planApp.Pages.Classes
                 return NotFound();
             }
 
-            Teachers = _context.Teacher
-                .Include("Availability")
-                .Include("Subjects")
-                .Include("Subjects.Subject")
-                .Include("Subjects.Teacher");
+			Teachers = _context.Teacher
+				.Include("Availability")
+				.Include("Subjects")
+				.Include("Subjects.Subject")
+				.Include("Subjects.Teacher").ToList().AsQueryable();
 
             if (Teachers == null)
             {
                 return NotFound();
             }
 
-            Lessons = _context.Lesson
-                .Include("Class")
-                .Include("Teacher")
-                .Include("Subject")
-                .Include("Classroom");
+			Lessons = _context.Lesson
+				.Include("Class")
+				.Include("Teacher")
+				.Include("Subject")
+				.Include("Classroom").ToList().AsQueryable();
 
             if (Lessons == null)
             {
