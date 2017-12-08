@@ -11,6 +11,11 @@ namespace planApp.Pages.Classes
 {
     public class ScheduleGeneratorModel : PageModel
     { 
+        public class Exception : System.Exception
+        {
+            public Exception(string msg) : base(msg) { }
+        }
+
         private readonly planApp.Data.ApplicationDbContext _context;
         [BindProperty]
         public Class Class { get; set; }
@@ -65,7 +70,14 @@ namespace planApp.Pages.Classes
                 return NotFound();
             }
 
-            GenerateSchedule();
+            try
+            {
+                GenerateSchedule();
+            }
+            catch (Exception)
+            {
+                return RedirectToPage("./ScheduleFailure", new { id = Class.ID });
+            }
             Schedule = Schedule
                 .OrderBy(l => l.Day)
                 .ThenBy(l => l.Hour)
@@ -77,9 +89,6 @@ namespace planApp.Pages.Classes
         public async Task<IActionResult> OnPostAsync()
         {
             _context.Lesson.RemoveRange(_context.Lesson.Include("Class").Where(l => l.Class.ID == Class.ID));
-            //for (var i = 0; i < Schedule.Count(); i++)
-            //{
-            //    var lesson = Schedule[i];
             foreach (var lesson in Schedule)
             {
                 lesson.Class = _context.Class.Where(c => c.ID == lesson.Class.ID).First();
@@ -100,15 +109,8 @@ namespace planApp.Pages.Classes
             }
         }
 
-        private void CreateLessons(Subject subject, int hours)
-        {
-            for (int i = 0; i < hours; i++)
-            {
-                CreateLesson(subject);
-            }
-        }
 
-        private void CreateLesson(Subject subject)
+        private void CreateLessons(Subject subject, int hours)
         {
             var subjectTeachers = GetTeachers(subject);
             for (int hour = 8; hour <= 16; hour++)
@@ -133,9 +135,17 @@ namespace planApp.Pages.Classes
                             Classroom = availableClassrooms[0]
                         };
                         Schedule.Add(lesson);
+                        hours--;
+                    }
+                    if (hours == 0)
+                    {
                         return;
                     }
                 }
+            }
+            if (hours > 0)
+            {
+                throw new Exception("Failed to generate schedule!");
             }
         }
 

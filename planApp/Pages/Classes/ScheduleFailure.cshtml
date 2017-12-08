@@ -1,0 +1,36 @@
+﻿@page
+@model planApp.Pages.Classes.ScheduleFailureModel
+
+@{
+    ViewData["Title"] = "Nie udało sie wygenerować rozkład zajęć";
+}
+
+<h2>Rozkład zajęć</h2>
+
+<hr />
+<h4>Klasa</h4>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Class.Year)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Class.Year)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Class.Letter)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Class.Letter)
+        </dd>
+    </dl>
+</div>
+<hr />
+<h4>Rozkład zajęć</h4>
+<div class="row">
+    Niestety, generowanie rozkładu zajęć nie powiodło się.
+</div>
+<hr />
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Class.ID">Wróć</a>
+</div>
