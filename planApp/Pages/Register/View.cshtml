@@ -1,8 +1,12 @@
 ﻿@page
 @model planApp.Pages.Register.ViewModel
 @{
-    ViewData["Title"] = "View";
-    Layout = "~/Pages/_Layout.cshtml";
+        ViewData["Title"] = "View";
+        Layout = "~/Pages/_Layout.cshtml";
+	/*
+     * @foreach (var itemR in Model.Student)
+                            {
+                            */
 }
 
 <h2>Dziennik</h2>
@@ -37,17 +41,14 @@
                     @foreach (var itemS in Model.Subject)
                     {
                         <td>
-                            @foreach (var itemR in Model.Student)
-                            {
-                                @foreach (var itemG in itemR.Grades)
+                                @foreach (var itemG in item.Grades)
                                 {
                                     if (itemG.Subject.ID == itemS.ID)
                                     {
-                                        <a asp-page="/Students/GradesDetails" asp-route-id="@itemG.ID" asp-route-studentId="@itemR.ID">@Html.DisplayFor(modelItem => itemG.Value)</a>
+                                        <a asp-page="/Students/GradesDetails" asp-route-id="@itemG.ID" asp-route-studentId="@item.ID">@Html.DisplayFor(modelItem => itemG.Value)</a>
                                     }
 
                                 }
-                            }
                         </td>}
                 </tr>}
         </tbody>

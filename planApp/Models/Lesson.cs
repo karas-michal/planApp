@@ -9,10 +9,10 @@ namespace planApp.Models
     public class Lesson
     {
         public int ID { get; set; }
-        [Display(Name = "Dzień")]
+        [Display(Name = "Dzień")] 
         public Day Day { get; set; }
         [Range(1, 24)]
-        [Display(Name = "Godzina")]
+        [Display(Name = "Godzina")] 
         public int Hour { get; set; }
         [Display(Name = "Przedmiot")]
         public Subject Subject { get; set; }

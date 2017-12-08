@@ -68,9 +68,11 @@
         <thead>
             <tr>
                 <th>
+                    @Html.DisplayNameFor(model => model.Class.Requirements[0].Subject)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Class.Requirements[0].Hours)
                 </th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -78,10 +80,10 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Hours)
+                        @Html.DisplayFor(modelItem => item.Subject.Name)
                     </td>
                     <td>
-                        <a asp-page="./Details" asp-route-id="@item.ID">Szczegóły</a>
+                        @Html.DisplayFor(modelItem => item.Hours)
                     </td>
                 </tr>
             }

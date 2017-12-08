@@ -10,14 +10,14 @@ using planApp.Models;
 namespace planApp.Pages.Classes
 {
     public class ScheduleGeneratorModel : PageModel
-    {
+    { 
         private readonly planApp.Data.ApplicationDbContext _context;
         [BindProperty]
         public Class Class { get; set; }
-        public IQueryable<Teacher> Teachers;
+        public IQueryable<Teacher> Teachers; 
         public IQueryable<Lesson> Lessons;
         [BindProperty]
-        public List<Lesson> Schedule { get; set; }
+        public List<Lesson> Schedule { get; set; } 
 
         public ScheduleGeneratorModel(planApp.Data.ApplicationDbContext context)
         {
@@ -25,16 +25,16 @@ namespace planApp.Pages.Classes
             Schedule = new List<Lesson>();
         }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id) 
         {
             if (id == null)
             {
                 return NotFound();
-            }
+            } 
 
             Class = await _context.Class
                 .Include("Students")
-                .Include("Requirements")
+                .Include("Requirements") 
                 .Include("Requirements.Subject")
                 .SingleOrDefaultAsync(m => m.ID == id);
 

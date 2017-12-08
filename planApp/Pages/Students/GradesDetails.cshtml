@@ -12,10 +12,10 @@
     <h4>Ocena</h4>
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Grade.Subject.Name)
+            @Html.DisplayNameFor(model => model.Grade.Subject.Name) 
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Grade.Subject.Name)
+            @Html.DisplayFor(model => model.Grade.Subject.Name) 
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Grade.Value)
@@ -27,5 +27,5 @@
 </div>
 <div>
     <a asp-page="./GradesEdit" asp-route-id="@Model.Grade.ID" asp-route-studentId="@Model.StudentID">Edytuj</a> |
-    <a asp-page="./Details" asp-route-id="@Model.StudentID">Wróć</a>
+    <a asp-page="./Details" asp-route-id="@Model.StudentID">Wróć</a> 
 </div>

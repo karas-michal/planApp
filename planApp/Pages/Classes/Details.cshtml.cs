@@ -13,8 +13,9 @@ namespace planApp.Pages.Classes
     {
         private readonly planApp.Data.ApplicationDbContext _context;
         public Class Class { get; set; }
+		public IList<Subject> Subject { get; set; }
 
-        public DetailsModel(planApp.Data.ApplicationDbContext context)
+		public DetailsModel(planApp.Data.ApplicationDbContext context)
         {
             _context = context;
         }
@@ -25,8 +26,8 @@ namespace planApp.Pages.Classes
             {
                 return NotFound();
             }
-
-            Class = await _context.Class.Include("Students").Include("Requirements").SingleOrDefaultAsync(m => m.ID == id);
+			Subject = await _context.Subject.ToListAsync();
+			Class = await _context.Class.Include("Students").Include("Requirements").SingleOrDefaultAsync(m => m.ID == id);
 
             if (Class == null)
             {

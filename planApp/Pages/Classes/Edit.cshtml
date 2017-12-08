@@ -79,6 +79,9 @@
         <thead>
             <tr>
                 <th>
+                    @Html.DisplayNameFor(model => model.Class.Requirements[0].Subject)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Class.Requirements[0].Hours)
                 </th>
                 <th></th>
@@ -88,6 +91,9 @@
             @foreach (var item in Model.Class.Requirements)
             {
                 <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject.Name)
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Hours)
                     </td>
